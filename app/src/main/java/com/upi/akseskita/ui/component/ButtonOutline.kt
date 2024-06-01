@@ -13,7 +13,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.upi.akseskita.R
@@ -21,14 +20,17 @@ import com.upi.akseskita.R
 @Composable
 fun ButtonOutline(
     text: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onTapAction: () -> Unit
 ) {
     Button(
         shape = RoundedCornerShape(4.dp),
         colors = ButtonDefaults.buttonColors(Color.Transparent, Color.Black),
         border = BorderStroke(1.dp, Color.Black),
+        enabled = enabled,
         onClick = { onTapAction() },
-        modifier = Modifier
+        modifier = modifier
             .height(46.dp)
             .fillMaxWidth(),
     ) {
@@ -39,10 +41,4 @@ fun ButtonOutline(
             fontWeight = FontWeight.ExtraBold,
         )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ButtonOutlinePreview() {
-    ButtonOutline(text = "Telusuri Sekarang", onTapAction = {})
 }

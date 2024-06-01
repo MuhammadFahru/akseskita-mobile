@@ -15,11 +15,6 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -32,6 +27,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.upi.akseskita.R
 import com.upi.akseskita.ui.component.ButtonFill
 import com.upi.akseskita.ui.component.ButtonOutline
@@ -40,9 +37,9 @@ import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Onboarding() {
+fun Onboarding(navController: NavHostController) {
     val onboardingContentList = listOf(
-        OnboardingModel(
+        OnboardingUiModel(
             title = "Selamat Datang!",
             content = "Mari bersama membuka dunia inklusi dengan teman digital cerdas berbasis AI untuk penyandang disabilitas.",
             icon = R.drawable.ic_welcome,
@@ -50,7 +47,7 @@ fun Onboarding() {
             index = 0,
             backgroundColor = Color.White
         ),
-        OnboardingModel(
+        OnboardingUiModel(
             title = "Kemudahan Akses di Genggaman Anda",
             content = "Dapatkan informasi tentang fasilitas publik dan layanan yang ramah disabilitas. Temukan solusi sehari-hari yang dirancang khusus untuk kebutuhan Anda.",
             icon = R.drawable.ic_disable,
@@ -58,7 +55,7 @@ fun Onboarding() {
             index = 1,
             backgroundColor = colorResource(id = R.color.primary)
         ),
-        OnboardingModel(
+        OnboardingUiModel(
             title = "Komunitas dan Dukungan",
             content = "Temukan dukungan, dan bagikan pengalaman Anda. Bersama, kita bisa saling membantu dan memberdayakan.",
             icon = R.drawable.ic_community,
@@ -89,7 +86,7 @@ fun Onboarding() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(state = pagerState) { page ->
-            OnboardingContent(data = onboardingContentList[page])
+            OnboardingContent(data = onboardingContentList[page], navController = navController)
         }
 
         PagerIndicator(
@@ -104,7 +101,8 @@ fun Onboarding() {
 
 @Composable
 fun OnboardingContent(
-    data: OnboardingModel
+    data: OnboardingUiModel,
+    navController: NavHostController
 ) {
     Box(
         modifier = Modifier
@@ -138,7 +136,7 @@ fun OnboardingContent(
             Spacer(modifier = Modifier.height(27.dp))
             Image(
                 painter = painterResource(R.drawable.ic_quote),
-                contentDescription = data.iconDesc,
+                contentDescription = "Icon Quotes",
                 contentScale = ContentScale.FillHeight,
                 modifier = Modifier
                     .height(21.dp),
@@ -153,18 +151,18 @@ fun OnboardingContent(
             if (data.index == 2) {
                 Spacer(modifier = Modifier.height(27.dp))
                 ButtonFill(text = "Kenali Diriku") {
-
+                    navController.navigate("persona")
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 ButtonOutline(text = "Telusuri Sekarang") {
-
+                    navController.navigate("home")
                 }
             }
         }
     }
 }
 
-data class OnboardingModel(
+data class OnboardingUiModel(
     val title: String,
     val content: String,
     val icon: Int,
@@ -176,5 +174,5 @@ data class OnboardingModel(
 @Preview(showBackground = true)
 @Composable
 fun OnboardingPreview() {
-    Onboarding()
+    Onboarding(rememberNavController())
 }

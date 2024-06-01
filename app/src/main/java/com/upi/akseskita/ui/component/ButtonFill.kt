@@ -12,7 +12,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.upi.akseskita.R
@@ -20,14 +19,21 @@ import com.upi.akseskita.R
 @Composable
 fun ButtonFill(
     text: String,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
     onTapAction: () -> Unit
 ) {
     Button(
-        modifier = Modifier
+        modifier = modifier
             .height(46.dp)
             .fillMaxWidth(),
+        enabled = enabled,
         shape = RoundedCornerShape(4.dp),
-        colors = ButtonDefaults.buttonColors(Color.Black, Color.White),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color.Black,
+            contentColor = Color.White,
+            disabledContainerColor = Color.Black.copy(0.7f)
+            ),
         onClick = { onTapAction() }
     ) {
         Text(
@@ -36,12 +42,6 @@ fun ButtonFill(
             fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
             fontWeight = FontWeight.ExtraBold,
 
-        )
+            )
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ButtonFillPreview() {
-    ButtonFill(text = "Kenali Diriku", onTapAction = {})
 }

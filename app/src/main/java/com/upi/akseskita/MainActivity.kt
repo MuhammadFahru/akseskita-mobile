@@ -8,6 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.upi.akseskita.ui.screen.Home
 import com.upi.akseskita.ui.screen.Onboarding
+import com.upi.akseskita.ui.screen.Persona
 import com.upi.akseskita.ui.screen.SplashScreen
 import com.upi.akseskita.ui.theme.AksesKitaTheme
 
@@ -19,7 +20,8 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "splash_screen") {
                     composable("splash_screen") { SplashScreen(navController = navController) }
-                    composable("onboarding") { Onboarding() }
+                    composable("onboarding") { Onboarding(navController = navController) }
+                    composable("persona") { Persona(navController = navController) }
                     composable("home") { Home() }
                 }
             }
