@@ -48,6 +48,7 @@ import androidx.navigation.NavController
 import com.upi.akseskita.R
 import com.upi.akseskita.ui.component.ButtonFill
 import com.upi.akseskita.ui.component.TextFieldWithMic
+import com.upi.akseskita.ui.navigation.Screen
 
 @Composable
 fun Persona(navController: NavController) {
@@ -118,7 +119,7 @@ fun Persona(navController: NavController) {
                             text = "Ke HomePage",
                             modifier = Modifier.align(Alignment.BottomCenter)
                         ) {
-                            navController.navigate("home") {
+                            navController.navigate(Screen.Home.route) {
                                 popUpTo(navController.graph.startDestinationId) {
                                     inclusive = true
                                 }

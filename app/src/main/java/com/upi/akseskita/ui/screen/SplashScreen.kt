@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.upi.akseskita.R
+import com.upi.akseskita.ui.navigation.Screen
 import kotlinx.coroutines.delay
 
 @Composable
@@ -56,7 +57,11 @@ fun SplashScreen(navController: NavController) {
 
     LaunchedEffect(true) {
         delay(2000L)
-        navController.navigate("onboarding")
+        navController.navigate(Screen.Onboarding.route) {
+            popUpTo(navController.graph.startDestinationId) {
+                inclusive = true
+            }
+        }
     }
 }
 

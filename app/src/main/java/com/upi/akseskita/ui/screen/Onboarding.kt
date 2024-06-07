@@ -33,6 +33,7 @@ import com.upi.akseskita.R
 import com.upi.akseskita.ui.component.ButtonFill
 import com.upi.akseskita.ui.component.ButtonOutline
 import com.upi.akseskita.ui.component.PagerIndicator
+import com.upi.akseskita.ui.navigation.Screen
 import kotlinx.coroutines.delay
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -151,11 +152,11 @@ fun OnboardingContent(
             if (data.index == 2) {
                 Spacer(modifier = Modifier.height(27.dp))
                 ButtonFill(text = "Kenali Diriku") {
-                    navController.navigate("persona")
+                    navController.navigate(Screen.Persona.route)
                 }
                 Spacer(modifier = Modifier.height(8.dp))
                 ButtonOutline(text = "Telusuri Sekarang") {
-                    navController.navigate("home")
+                    navController.navigate(Screen.Home.route)
                 }
             }
         }

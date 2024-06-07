@@ -5,4 +5,5 @@
     <color name="primary">#FF84DCC6</color>
     <color name="secondary">#FFA5FFD6</color>
     <color name="tertiary">#FFFFA69E</color>
+    <color name="accent">#FFFF686B</color>
 </resources>
