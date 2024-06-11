@@ -32,7 +32,8 @@ fun ButtonFill(
         colors = ButtonDefaults.buttonColors(
             containerColor = Color.Black,
             contentColor = Color.White,
-            disabledContainerColor = Color.Black.copy(0.7f)
+            disabledContainerColor = Color.Black.copy(0.7f),
+            disabledContentColor = Color.White.copy(0.7f)
             ),
         onClick = { onTapAction() }
     ) {
@@ -41,7 +42,6 @@ fun ButtonFill(
             fontSize = 16.sp,
             fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
             fontWeight = FontWeight.ExtraBold,
-
             )
     }
 }

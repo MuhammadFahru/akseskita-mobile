@@ -5,7 +5,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
@@ -28,11 +27,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.upi.akseskita.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TextFieldWithMic(
     placeholder: String,
     value: TextFieldValue,
+    modifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
     onValueChange: (TextFieldValue) -> Unit,
     onClickAction: () -> Unit,
@@ -62,7 +61,7 @@ fun TextFieldWithMic(
                     .clickable { onClickAction() }
             )
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         singleLine = true,
         keyboardOptions = keyboardOptions,
