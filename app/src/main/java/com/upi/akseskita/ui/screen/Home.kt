@@ -45,9 +45,12 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.upi.akseskita.R
 import com.upi.akseskita.data.model.PlaceModel
 import com.upi.akseskita.ui.component.BottomBar
@@ -58,12 +61,17 @@ import com.upi.akseskita.ui.theme.AksesKitaTheme
 
 @Composable
 fun Home(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
+
     Scaffold(
-        bottomBar = { BottomBar(navHostController = navController) }
+        bottomBar = { if (currentRoute != Screen.Detail.route) BottomBar(navHostController = navController) }
     ) { innerPadding ->
         AksesKitaTheme {
+            var bottomPadding = innerPadding.calculateBottomPadding() - 15.dp
+            if (bottomPadding < 0.dp) bottomPadding = 0.dp
             NavHost(
                 navController = navController,
                 startDestination = Screen.HomeScreen.route,
@@ -71,20 +79,51 @@ fun Home(
                     start = innerPadding.calculateStartPadding(LayoutDirection.Ltr),
                     end = innerPadding.calculateEndPadding(LayoutDirection.Ltr),
                     top = innerPadding.calculateTopPadding(),
-                    bottom = innerPadding.calculateBottomPadding() - 15.dp
+                    bottom = bottomPadding
                 )
             ) {
-                composable(Screen.HomeScreen.route) { HomeScreen() }
+//                TODO("change to real id, not string")
+                composable(Screen.HomeScreen.route) {
+                    HomeScreen(navigateToDetail = { placeId ->
+                        navController.navigate(
+                            Screen.Detail.createRoute(placeId)
+                        )
+                    })
+                }
                 composable(Screen.Maps.route) { Maps() }
-                composable(Screen.Favorite.route) { Favorite() }
+                composable(Screen.Favorite.route) { Favorite(navigateToDetail = { placeId ->
+                    navController.navigate(
+                        Screen.Detail.createRoute(placeId)
+                    )
+                }) }
                 composable(Screen.Profile.route) { Profile() }
+                composable(
+                    route = Screen.Detail.route,
+                    arguments = listOf(navArgument("placeId") { type = NavType.StringType }),
+                ) {
+                    val id = it.arguments?.getString("placeId") ?: ""
+                    Detail(
+                        name = id,
+                        category = "Kategori",
+                        location = "Nama Jalan",
+                        rating = 4.0F,
+                        imageUrl = "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                        blindFriendlyStatus = 1,
+                        disableFriendlyStatus = 2,
+                        navigateBack = {
+                            navController.navigateUp()
+                        }
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navigateToDetail: (String) -> Unit
+) {
     var search by remember { mutableStateOf(TextFieldValue("")) }
     var selectedCategoryIndex by remember { mutableIntStateOf(-1) }
     val category = listOf(
@@ -217,7 +256,9 @@ fun HomeScreen() {
                                 location = it.location,
                                 rating = it.rating,
                                 imageUrl = it.imageUrl,
-                                modifier = Modifier.size(225.dp, 328.dp)
+                                modifier = Modifier
+                                    .size(225.dp, 328.dp)
+                                    .clickable { navigateToDetail(it.name) }
                             )
                             Spacer(modifier = Modifier.width(7.dp))
                         }
@@ -273,5 +314,5 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun HomePreview() {
-    HomeScreen()
+    HomeScreen {}
 }

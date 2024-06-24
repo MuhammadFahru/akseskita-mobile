@@ -51,7 +51,7 @@ fun Onboarding(navController: NavHostController) {
         OnboardingUiModel(
             title = "Kemudahan Akses di Genggaman Anda",
             content = "Dapatkan informasi tentang fasilitas publik dan layanan yang ramah disabilitas. Temukan solusi sehari-hari yang dirancang khusus untuk kebutuhan Anda.",
-            icon = R.drawable.ic_disable,
+            icon = R.drawable.ic_disable_black,
             iconDesc = "Icon Disabilitas",
             index = 1,
             backgroundColor = colorResource(id = R.color.primary)

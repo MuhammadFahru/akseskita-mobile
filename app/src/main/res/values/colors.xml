@@ -6,4 +6,5 @@
     <color name="secondary">#FFA5FFD6</color>
     <color name="tertiary">#FFFFA69E</color>
     <color name="accent">#FFFF686B</color>
+    <color name="warning">#FFD8E25C</color>
 </resources>

@@ -1,5 +1,6 @@
 package com.upi.akseskita.ui.screen
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -35,7 +36,9 @@ import com.upi.akseskita.ui.component.PlaceItem
 import com.upi.akseskita.ui.component.TextFieldWithMic
 
 @Composable
-fun Favorite() {
+fun Favorite(
+    navigateToDetail: (String) -> Unit
+) {
     var search by remember { mutableStateOf(TextFieldValue("")) }
     val placeList = listOf(
         PlaceModel(
@@ -134,6 +137,9 @@ fun Favorite() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(216.dp)
+                            .clickable {
+                                navigateToDetail(it.name)
+                            }
                     )
                     Spacer(modifier = Modifier.height(6.dp))
                 }
