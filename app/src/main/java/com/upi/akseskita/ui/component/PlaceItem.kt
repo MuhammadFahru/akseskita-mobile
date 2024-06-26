@@ -80,6 +80,7 @@ fun PlaceItem(
                     Text(
                         text = rating.toString(),
                         fontSize = 12.sp,
+                        lineHeight = 12.sp,
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                     )
                 }
@@ -111,15 +112,19 @@ fun PlaceItem(
                     Text(
                         text = category,
                         fontSize = 12.sp,
+                        lineHeight = 12.sp,
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                     )
                     Text(
                         text = name,
                         fontSize = 12.sp,
+                        lineHeight = 12.sp,
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                         fontWeight = FontWeight.ExtraBold,
                     )
-                    Row {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
                         Icon(
                             imageVector = Icons.Default.Place,
                             contentDescription = "Icon Location",
@@ -128,6 +133,7 @@ fun PlaceItem(
                         Text(
                             text = location,
                             fontSize = 12.sp,
+                            lineHeight = 12.sp,
                             fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                             fontWeight = FontWeight.SemiBold,
                         )

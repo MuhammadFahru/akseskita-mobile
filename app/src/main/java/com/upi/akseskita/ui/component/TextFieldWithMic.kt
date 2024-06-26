@@ -68,6 +68,8 @@ fun TextFieldWithMic(
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedBorderColor = Color.Black,
             focusedBorderColor = Color.Black,
+            unfocusedContainerColor = Color.White,
+            focusedContainerColor = Color.White,
         ),
     )
 }

@@ -90,7 +90,11 @@ fun Home(
                         )
                     })
                 }
-                composable(Screen.Maps.route) { Maps() }
+                composable(Screen.Maps.route) { Maps(navigateToDetail = { placeId ->
+                    navController.navigate(
+                        Screen.Detail.createRoute(placeId)
+                    )
+                }) }
                 composable(Screen.Favorite.route) { Favorite(navigateToDetail = { placeId ->
                     navController.navigate(
                         Screen.Detail.createRoute(placeId)
