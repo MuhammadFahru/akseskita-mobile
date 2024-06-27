@@ -38,11 +38,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.upi.akseskita.R
-import com.upi.akseskita.ui.component.ButtonFill
-import com.upi.akseskita.ui.component.ButtonOutline
-import com.upi.akseskita.ui.component.PlaceFriendlyStatus
-import com.upi.akseskita.ui.component.PlaceReviewItem
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.ui.component.ButtonFill
+import com.upi.akseskita.core.ui.component.ButtonOutline
+import com.upi.akseskita.core.ui.component.PlaceFriendlyStatus
+import com.upi.akseskita.core.ui.component.PlaceReviewItem
 
 @Composable
 fun Detail(

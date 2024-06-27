@@ -30,10 +30,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.upi.akseskita.R
-import com.upi.akseskita.data.model.PlaceModel
-import com.upi.akseskita.ui.component.PlaceItem
-import com.upi.akseskita.ui.component.TextFieldWithMic
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.ui.component.PlaceItem
+import com.upi.akseskita.core.ui.component.TextFieldWithMic
 
 @Composable
 fun Favorite(

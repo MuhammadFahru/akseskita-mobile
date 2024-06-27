@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.navigation
+package com.upi.akseskita.core.ui.navigation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

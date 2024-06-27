@@ -7,12 +7,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.upi.akseskita.ui.navigation.Screen
+import com.upi.akseskita.core.ui.navigation.Screen
 import com.upi.akseskita.ui.screen.Home
 import com.upi.akseskita.ui.screen.Onboarding
 import com.upi.akseskita.ui.screen.Persona
 import com.upi.akseskita.ui.screen.SplashScreen
-import com.upi.akseskita.ui.theme.AksesKitaTheme
+import com.upi.akseskita.core.ui.theme.AksesKitaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

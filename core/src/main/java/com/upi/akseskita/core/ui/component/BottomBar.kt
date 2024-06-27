@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.component
+package com.upi.akseskita.core.ui.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
@@ -46,9 +46,9 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.upi.akseskita.R
-import com.upi.akseskita.ui.navigation.NavigationItem
-import com.upi.akseskita.ui.navigation.Screen
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.ui.navigation.NavigationItem
+import com.upi.akseskita.core.ui.navigation.Screen
 
 @Composable
 fun BottomBar(

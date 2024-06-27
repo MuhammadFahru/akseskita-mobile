@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.theme
+package com.upi.akseskita.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

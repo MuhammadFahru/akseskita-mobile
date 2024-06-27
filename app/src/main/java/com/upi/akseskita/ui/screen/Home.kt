@@ -51,13 +51,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.upi.akseskita.R
-import com.upi.akseskita.data.model.PlaceModel
-import com.upi.akseskita.ui.component.BottomBar
-import com.upi.akseskita.ui.component.PlaceItem
-import com.upi.akseskita.ui.component.TextFieldWithMic
-import com.upi.akseskita.ui.navigation.Screen
-import com.upi.akseskita.ui.theme.AksesKitaTheme
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.ui.component.BottomBar
+import com.upi.akseskita.core.ui.component.PlaceItem
+import com.upi.akseskita.core.ui.component.TextFieldWithMic
+import com.upi.akseskita.core.ui.navigation.Screen
+import com.upi.akseskita.core.ui.theme.AksesKitaTheme
 
 @Composable
 fun Home(

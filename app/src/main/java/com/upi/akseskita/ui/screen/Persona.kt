@@ -45,10 +45,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.upi.akseskita.R
-import com.upi.akseskita.ui.component.ButtonFill
-import com.upi.akseskita.ui.component.TextFieldWithMic
-import com.upi.akseskita.ui.navigation.Screen
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.ui.component.ButtonFill
+import com.upi.akseskita.core.ui.component.TextFieldWithMic
+import com.upi.akseskita.core.ui.navigation.Screen
 
 @Composable
 fun Persona(navController: NavController) {

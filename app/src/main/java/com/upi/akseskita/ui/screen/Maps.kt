@@ -49,10 +49,10 @@ import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.rememberCameraPositionState
-import com.upi.akseskita.R
-import com.upi.akseskita.data.model.PlaceModel
-import com.upi.akseskita.ui.component.PlaceItem
-import com.upi.akseskita.ui.component.TextFieldWithMic
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.ui.component.PlaceItem
+import com.upi.akseskita.core.ui.component.TextFieldWithMic
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable

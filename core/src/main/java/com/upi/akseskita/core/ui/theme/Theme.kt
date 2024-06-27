@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.theme
+package com.upi.akseskita.core.ui.theme
 
 import android.app.Activity
 import android.os.Build

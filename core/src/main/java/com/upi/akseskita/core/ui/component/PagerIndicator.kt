@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.component
+package com.upi.akseskita.core.ui.component
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background

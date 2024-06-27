@@ -1,4 +1,4 @@
-package com.upi.akseskita.data.model
+package com.upi.akseskita.core.data.model
 
 data class PlaceModel(
     val name: String,

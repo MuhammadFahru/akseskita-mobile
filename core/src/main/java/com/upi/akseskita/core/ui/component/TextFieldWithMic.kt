@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.component
+package com.upi.akseskita.core.ui.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -25,7 +25,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.upi.akseskita.R
+import com.upi.akseskita.core.R
 
 @Composable
 fun TextFieldWithMic(

@@ -23,8 +23,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.upi.akseskita.R
-import com.upi.akseskita.ui.navigation.Screen
+import com.upi.akseskita.core.R
+import com.upi.akseskita.core.ui.navigation.Screen
 import kotlinx.coroutines.delay
 
 @Composable
