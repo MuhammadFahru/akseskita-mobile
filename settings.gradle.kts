@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Akses Kita"
 include(":app")
+include(":core")
