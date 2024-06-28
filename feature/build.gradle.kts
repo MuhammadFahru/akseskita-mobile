@@ -1,6 +1,3 @@
-import java.io.FileInputStream
-import java.util.Properties
-
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
@@ -8,12 +5,8 @@ plugins {
 
 apply(from = "../shared_dependencies.gradle")
 
-val localPropertiesFile = rootProject.file("local.properties")
-val localProperties = Properties()
-localProperties.load(FileInputStream(localPropertiesFile))
-
 android {
-    namespace = "com.upi.akseskita.core"
+    namespace = "com.upi.akseskita.feature"
     compileSdk = 34
 
     defaultConfig {
@@ -21,8 +14,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
-
-        buildConfigField("String", "BASE_URL", localProperties["BASE_URL"] as String)
     }
 
     buildTypes {
@@ -52,9 +43,14 @@ android {
 
 dependencies {
 
-    implementation(libs.androidx.material3)
+    implementation(project(":core"))
 
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.converter.gson)
-    implementation(libs.okhttp)
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicator)
+
+    implementation(libs.maps.compose)
+    implementation(libs.maps.compose.utils)
+    implementation(libs.maps.compose.widgets)
+    implementation(libs.play.services.location)
+    implementation(libs.accompanist.permissions)
 }

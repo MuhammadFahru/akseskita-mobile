@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.screen
+package com.upi.akseskita.feature.maps
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -50,7 +50,7 @@ import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.upi.akseskita.core.R
-import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.domain.model.PlaceModel
 import com.upi.akseskita.core.ui.component.PlaceItem
 import com.upi.akseskita.core.ui.component.TextFieldWithMic
 
@@ -91,33 +91,6 @@ fun Maps(navigateToDetail: (String) -> Unit) {
             Log.e("Maps", "Location permissions are not granted.")
         }
     }
-
-    val placeList = listOf(
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-    )
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -189,21 +162,21 @@ fun Maps(navigateToDetail: (String) -> Unit) {
                     )
                 }
                 Spacer(modifier = Modifier.height(12.dp))
-                LazyRow {
-                    items(placeList) {
-                        PlaceItem(
-                            name = it.name,
-                            category = it.category,
-                            location = it.location,
-                            rating = it.rating,
-                            imageUrl = it.imageUrl,
-                            modifier = Modifier
-                                .size(225.dp, 172.dp)
-                                .clickable { navigateToDetail(it.name) }
-                        )
-                        Spacer(modifier = Modifier.width(7.dp))
-                    }
-                }
+//                LazyRow {
+//                    items(placeList) {
+//                        PlaceItem(
+//                            name = it.name,
+//                            category = it.category,
+//                            location = it.location,
+//                            rating = it.rating,
+//                            imageUrl = it.imageUrl,
+//                            modifier = Modifier
+//                                .size(225.dp, 172.dp)
+//                                .clickable { navigateToDetail(it.name) }
+//                        )
+//                        Spacer(modifier = Modifier.width(7.dp))
+//                    }
+//                }
             }
         }
     }

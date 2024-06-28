@@ -56,22 +56,9 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    implementation(project(":feature"))
 
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.ui)
-    implementation(libs.androidx.ui.graphics)
-    implementation(libs.androidx.ui.tooling.preview)
-    androidTestImplementation(libs.androidx.ui.test.junit4)
-    debugImplementation(libs.androidx.ui.test.manifest)
-
-    implementation(libs.accompanist.pager)
-    implementation(libs.accompanist.pager.indicator)
-
-    implementation(libs.maps.compose)
-    implementation(libs.maps.compose.utils)
-    implementation(libs.maps.compose.widgets)
-    implementation(libs.play.services.location)
-    implementation(libs.accompanist.permissions)
 }
 
 secrets {

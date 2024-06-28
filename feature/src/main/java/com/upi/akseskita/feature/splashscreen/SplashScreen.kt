@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.screen
+package com.upi.akseskita.feature.splashscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

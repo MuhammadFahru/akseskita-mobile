@@ -1,5 +1,10 @@
 dependencies {
     // base dependencies
+    implementation(libs.androidx.ui)
+    implementation(libs.androidx.ui.graphics)
+    implementation(libs.androidx.ui.tooling.preview)
+    androidTestImplementation(libs.androidx.ui.test.junit4)
+    debugImplementation(libs.androidx.ui.test.manifest)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -19,4 +24,10 @@ dependencies {
 
     // material
     implementation(libs.androidx.material3)
+
+    // koin
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+//    implementation(libs.koin.viewmodel)
+    implementation(libs.koin.compose)
 }

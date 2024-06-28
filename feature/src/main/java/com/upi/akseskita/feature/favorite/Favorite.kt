@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.screen
+package com.upi.akseskita.feature.favorite
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -31,7 +31,7 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.upi.akseskita.core.R
-import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.domain.model.PlaceModel
 import com.upi.akseskita.core.ui.component.PlaceItem
 import com.upi.akseskita.core.ui.component.TextFieldWithMic
 
@@ -40,56 +40,6 @@ fun Favorite(
     navigateToDetail: (String) -> Unit
 ) {
     var search by remember { mutableStateOf(TextFieldValue("")) }
-    val placeList = listOf(
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-    )
 
     Box(
         modifier = Modifier
@@ -125,25 +75,25 @@ fun Favorite(
                 )
             }
             Spacer(modifier = Modifier.height(12.dp))
-            LazyColumn {
-                items(placeList) {
-                    PlaceItem(
-                        name = it.name,
-                        category = it.category,
-                        location = it.location,
-                        rating = it.rating,
-                        imageUrl = it.imageUrl,
-                        isFavorite = true,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(216.dp)
-                            .clickable {
-                                navigateToDetail(it.name)
-                            }
-                    )
-                    Spacer(modifier = Modifier.height(6.dp))
-                }
-            }
+//            LazyColumn {
+//                items(placeList) {
+//                    PlaceItem(
+//                        name = it.name,
+//                        category = it.category,
+//                        location = it.location,
+//                        rating = it.rating,
+//                        imageUrl = it.imageUrl,
+//                        isFavorite = true,
+//                        modifier = Modifier
+//                            .fillMaxWidth()
+//                            .height(216.dp)
+//                            .clickable {
+//                                navigateToDetail(it.name)
+//                            }
+//                    )
+//                    Spacer(modifier = Modifier.height(6.dp))
+//                }
+//            }
         }
     }
 }

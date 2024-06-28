@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.screen
+package com.upi.akseskita.feature.onboarding
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
