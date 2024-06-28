@@ -51,6 +51,7 @@ fun PlaceFriendlyStatus(
     }
 
     val descriptions = listOf(
+        "",
         "sangat ramah $disableType",
         "kurang ramah $disableType",
         "tidak ramah $disableType",
@@ -68,7 +69,7 @@ fun PlaceFriendlyStatus(
             ) {
                 Image(
                     painter = painterResource(icon),
-                    contentDescription = descriptions[status - 1],
+                    contentDescription = descriptions[status],
                     contentScale = ContentScale.FillHeight,
                     modifier = Modifier
                         .height(40.dp)
@@ -77,7 +78,7 @@ fun PlaceFriendlyStatus(
             }
             Spacer(modifier = Modifier.width(6.dp))
             Text(
-                text = "Tempat ini " + descriptions[status - 1],
+                text = "Tempat ini " + descriptions[status],
                 fontSize = 12.sp,
                 lineHeight = 14.sp,
                 fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),

@@ -38,10 +38,10 @@ data class ResponseItem(
 	val createdAt: String? = null,
 
 	@field:SerializedName("tuna_netra_friendly_status")
-	val tunaNetraFriendlyStatus: String? = null,
+	val tunaNetraFriendlyStatus: Int? = null,
 
 	@field:SerializedName("tuna_daksa_friendly_status")
-	val tunaDaksaFriendlyStatus: String? = null,
+	val tunaDaksaFriendlyStatus: Int? = null,
 
 	@field:SerializedName("tuna_rungu_friendly_status")
 	val tunaRunguFriendlyStatus: String? = null,
@@ -116,5 +116,8 @@ data class ReviewsItem(
 	val createdAt: String? = null,
 
 	@field:SerializedName("id")
-	val id: Int? = null
+	val id: Int? = null,
+
+	@field:SerializedName("user")
+	val user: User? = null,
 )

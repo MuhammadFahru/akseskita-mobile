@@ -9,7 +9,7 @@ sealed class Screen(val route: String) {
     object Maps : Screen("maps")
     object Favorite : Screen("favorite")
     object Profile : Screen("profile")
-    object Detail : Screen("{placeId}") {
-        fun createRoute(placeId: String) = placeId
+    object Detail : Screen("detail/{placeId}") {
+        fun createRoute(placeId: Int) = "detail/$placeId"
     }
 }

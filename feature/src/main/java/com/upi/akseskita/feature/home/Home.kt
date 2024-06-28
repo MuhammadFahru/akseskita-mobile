@@ -124,17 +124,11 @@ fun Home(
                 composable(Screen.Profile.route) { Profile() }
                 composable(
                     route = Screen.Detail.route,
-                    arguments = listOf(navArgument("placeId") { type = NavType.StringType }),
+                    arguments = listOf(navArgument("placeId") { type = NavType.IntType }),
                 ) {
-                    val id = it.arguments?.getString("placeId") ?: ""
+                    val id = it.arguments?.getInt("placeId") ?: 0
                     Detail(
-                        name = id,
-                        category = "Kategori",
-                        location = "Nama Jalan",
-                        rating = 4.0F,
-                        imageUrl = "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                        blindFriendlyStatus = 1,
-                        disableFriendlyStatus = 2,
+                        id = id,
                         navigateBack = {
                             navController.navigateUp()
                         }
@@ -147,7 +141,7 @@ fun Home(
 
 @Composable
 fun HomeScreen(
-    navigateToDetail: (String) -> Unit,
+    navigateToDetail: (Int) -> Unit,
     getAllFacilities: () -> Unit,
     getTopRatedFacilities: () -> Unit,
     allFacilitiesUiState: UiState<List<PlaceModel>>,
@@ -286,7 +280,7 @@ fun HomeScreen(
                                         imageUrl = it.imageUrl.first(),
                                         modifier = Modifier
                                             .size(225.dp, 328.dp)
-                                            .clickable { navigateToDetail(it.name ?: "") }
+                                            .clickable { navigateToDetail(it.id ?: 0) }
                                     )
                                     Spacer(modifier = Modifier.width(7.dp))
                                 }
@@ -341,7 +335,7 @@ fun HomeScreen(
                                         imageUrl = it.imageUrl.first(),
                                         modifier = Modifier
                                             .size(225.dp, 328.dp)
-                                            .clickable { navigateToDetail(it.name ?: "") }
+                                            .clickable { navigateToDetail(it.id ?: 0) }
                                     )
                                     Spacer(modifier = Modifier.width(7.dp))
                                 }

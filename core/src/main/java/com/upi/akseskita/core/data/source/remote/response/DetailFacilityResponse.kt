@@ -35,10 +35,10 @@ data class DetailFacilityResponse(
 	val createdAt: String? = null,
 
 	@field:SerializedName("tuna_netra_friendly_status")
-	val tunaNetraFriendlyStatus: String? = null,
+	val tunaNetraFriendlyStatus: Int? = null,
 
 	@field:SerializedName("tuna_daksa_friendly_status")
-	val tunaDaksaFriendlyStatus: String? = null,
+	val tunaDaksaFriendlyStatus: Int? = null,
 
 	@field:SerializedName("tuna_rungu_friendly_status")
 	val tunaRunguFriendlyStatus: String? = null,

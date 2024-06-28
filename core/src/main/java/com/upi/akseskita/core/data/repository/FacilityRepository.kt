@@ -1,7 +1,9 @@
 package com.upi.akseskita.core.data.repository
 
+import android.util.Log
 import com.upi.akseskita.core.data.source.remote.RemoteDataSource
 import com.upi.akseskita.core.data.source.remote.network.ApiResponse
+import com.upi.akseskita.core.domain.model.DetailPlaceModel
 import com.upi.akseskita.core.domain.model.PlaceModel
 import com.upi.akseskita.core.domain.repository.IFacilityRepository
 import com.upi.akseskita.core.utils.DataMapper
@@ -15,7 +17,8 @@ class FacilityRepository(
         return remoteDataSource.getAllFacilities().map { response ->
             when (response) {
                 is ApiResponse.Success -> {
-                    DataMapper.mapResponseToDomain(response.data).take(5)
+                    DataMapper.mapResponseToDomain(response.data)
+
                 }
 
                 is ApiResponse.Error -> {
@@ -86,20 +89,21 @@ class FacilityRepository(
         }
     }
 
-    override suspend fun getDetailFacilities(id: Int): Flow<PlaceModel> {
+    override suspend fun getDetailFacilities(id: Int): Flow<DetailPlaceModel> {
         return remoteDataSource.getDetailFacilities(id)
             .map {
                 when (it) {
                     is ApiResponse.Success -> {
+                        Log.i("DetailDataRepository", "$it.data")
                         DataMapper.detailResponseToDomain(it.data)
                     }
 
                     is ApiResponse.Error -> {
-                        PlaceModel()
+                        DetailPlaceModel()
                     }
 
                     is ApiResponse.Empty -> {
-                        PlaceModel()
+                        DetailPlaceModel()
                     }
                 }
             }

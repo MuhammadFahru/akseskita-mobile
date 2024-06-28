@@ -1,5 +1,6 @@
 package com.upi.akseskita.core.domain.usecase
 
+import com.upi.akseskita.core.domain.model.DetailPlaceModel
 import com.upi.akseskita.core.domain.model.PlaceModel
 import com.upi.akseskita.core.domain.repository.IFacilityRepository
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +22,7 @@ class FacilityInteractor(private val facilityRepository: IFacilityRepository) : 
         return facilityRepository.searchFacilitiesByCategory(category)
     }
 
-    override suspend fun getDetailFacilities(id: Int): Flow<PlaceModel> {
+    override suspend fun getDetailFacilities(id: Int): Flow<DetailPlaceModel> {
         return facilityRepository.getDetailFacilities(id)
     }
 }
