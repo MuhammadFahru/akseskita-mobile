@@ -1,4 +1,4 @@
-package com.upi.akseskita.ui.screen
+package com.upi.akseskita.feature.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,6 +20,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Place
@@ -27,6 +28,8 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -40,7 +43,6 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,19 +54,28 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.upi.akseskita.core.R
-import com.upi.akseskita.core.data.model.PlaceModel
+import com.upi.akseskita.core.domain.model.PlaceModel
+import com.upi.akseskita.core.ui.UiState
 import com.upi.akseskita.core.ui.component.BottomBar
 import com.upi.akseskita.core.ui.component.PlaceItem
 import com.upi.akseskita.core.ui.component.TextFieldWithMic
 import com.upi.akseskita.core.ui.navigation.Screen
 import com.upi.akseskita.core.ui.theme.AksesKitaTheme
+import com.upi.akseskita.feature.detail.Detail
+import com.upi.akseskita.feature.favorite.Favorite
+import com.upi.akseskita.feature.maps.Maps
+import com.upi.akseskita.feature.profile.Profile
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Home(
     navController: NavHostController = rememberNavController(),
+    viewModel: HomeViewModel = koinViewModel()
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
+    val allFacilitiesUiState by viewModel.allFacilitiesState.collectAsState()
+    val topRatedFacilitiesUiState by viewModel.topRatedFacilitiesState.collectAsState()
 
     Scaffold(
         bottomBar = { if (currentRoute != Screen.Detail.route) BottomBar(navHostController = navController) }
@@ -84,22 +95,32 @@ fun Home(
             ) {
 //                TODO("change to real id, not string")
                 composable(Screen.HomeScreen.route) {
-                    HomeScreen(navigateToDetail = { placeId ->
+                    HomeScreen(
+                        getAllFacilities = viewModel::getAllFacilities,
+                        getTopRatedFacilities = viewModel::getTopRatedFacilities,
+                        allFacilitiesUiState = allFacilitiesUiState,
+                        topRatedFacilitiesUiState = topRatedFacilitiesUiState,
+                        navigateToDetail = { placeId ->
+                            navController.navigate(
+                                Screen.Detail.createRoute(placeId)
+                            )
+                        }
+                    )
+                }
+                composable(Screen.Maps.route) {
+                    Maps(navigateToDetail = { placeId ->
                         navController.navigate(
                             Screen.Detail.createRoute(placeId)
                         )
                     })
                 }
-                composable(Screen.Maps.route) { Maps(navigateToDetail = { placeId ->
-                    navController.navigate(
-                        Screen.Detail.createRoute(placeId)
-                    )
-                }) }
-                composable(Screen.Favorite.route) { Favorite(navigateToDetail = { placeId ->
-                    navController.navigate(
-                        Screen.Detail.createRoute(placeId)
-                    )
-                }) }
+                composable(Screen.Favorite.route) {
+                    Favorite(navigateToDetail = { placeId ->
+                        navController.navigate(
+                            Screen.Detail.createRoute(placeId)
+                        )
+                    })
+                }
                 composable(Screen.Profile.route) { Profile() }
                 composable(
                     route = Screen.Detail.route,
@@ -126,7 +147,11 @@ fun Home(
 
 @Composable
 fun HomeScreen(
-    navigateToDetail: (String) -> Unit
+    navigateToDetail: (String) -> Unit,
+    getAllFacilities: () -> Unit,
+    getTopRatedFacilities: () -> Unit,
+    allFacilitiesUiState: UiState<List<PlaceModel>>,
+    topRatedFacilitiesUiState: UiState<List<PlaceModel>>,
 ) {
     var search by remember { mutableStateOf(TextFieldValue("")) }
     var selectedCategoryIndex by remember { mutableIntStateOf(-1) }
@@ -136,32 +161,11 @@ fun HomeScreen(
         "Pendidikan",
         "Rekreasi"
     )
-    val placeList = listOf(
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-        PlaceModel(
-            "Nama Tempat",
-            "Kategori",
-            "Lokasi",
-            5.0f,
-            false,
-            "https://images.unsplash.com/photo-1504810935423-dbbe9a698963?q=80&w=1854&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        ),
-    )
+
+    LaunchedEffect(Unit) {
+        getAllFacilities()
+        getTopRatedFacilities()
+    }
 
     LazyColumn {
         item {
@@ -174,7 +178,7 @@ fun HomeScreen(
                     modifier = Modifier.fillMaxSize(),
                 ) {
                     Text(
-                        text = "Hi! Ujang Kandil",
+                        text = "Selamat Datang",
                         fontSize = 36.sp,
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                         fontWeight = FontWeight.ExtraBold,
@@ -252,40 +256,51 @@ fun HomeScreen(
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    LazyRow {
-                        items(placeList) {
-                            PlaceItem(
-                                name = it.name,
-                                category = it.category,
-                                location = it.location,
-                                rating = it.rating,
-                                imageUrl = it.imageUrl,
-                                modifier = Modifier
-                                    .size(225.dp, 328.dp)
-                                    .clickable { navigateToDetail(it.name) }
-                            )
-                            Spacer(modifier = Modifier.width(7.dp))
-                        }
-                    }
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        when (allFacilitiesUiState) {
+                            is UiState.Loading -> {
+                                item {
+                                    Box(
+                                        modifier = Modifier
+                                            .width(400.dp)
+                                            .height(328.dp)
+                                    ) {
+                                        CircularProgressIndicator(
+                                            modifier = Modifier.align(
+                                                Alignment.Center
+                                            )
+                                        )
+                                    }
+                                }
+                            }
 
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "Sekitar Kamu",
-                        fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    LazyRow {
-                        items(placeList) {
-                            PlaceItem(
-                                name = it.name,
-                                category = it.category,
-                                location = it.location,
-                                rating = it.rating,
-                                imageUrl = it.imageUrl,
-                                modifier = Modifier.size(225.dp, 328.dp)
-                            )
-                            Spacer(modifier = Modifier.width(7.dp))
+                            is UiState.Success -> {
+                                items(allFacilitiesUiState.data) {
+                                    PlaceItem(
+                                        name = it.name ?: "",
+                                        category = it.category ?: "",
+                                        location = it.location ?: "",
+                                        rating = it.rating?.toFloat() ?: 0F,
+                                        imageUrl = it.imageUrl.first(),
+                                        modifier = Modifier
+                                            .size(225.dp, 328.dp)
+                                            .clickable { navigateToDetail(it.name ?: "") }
+                                    )
+                                    Spacer(modifier = Modifier.width(7.dp))
+                                }
+                            }
+
+                            is UiState.Error -> {
+                                item {
+                                    Text(
+                                        text = "Terjadi kesalahan ${allFacilitiesUiState.exception}",
+                                        fontSize = 20.sp,
+                                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
+                                    )
+                                }
+                            }
                         }
                     }
 
@@ -296,27 +311,55 @@ fun HomeScreen(
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    LazyRow {
-                        items(placeList) {
-                            PlaceItem(
-                                name = it.name,
-                                category = it.category,
-                                location = it.location,
-                                rating = it.rating,
-                                imageUrl = it.imageUrl,
-                                modifier = Modifier.size(225.dp, 328.dp)
-                            )
-                            Spacer(modifier = Modifier.width(7.dp))
+                    LazyRow(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        when (topRatedFacilitiesUiState) {
+                            is UiState.Loading -> {
+                                item {
+                                    Box(
+                                        modifier = Modifier
+                                            .width(600.dp)
+                                            .height(328.dp)
+                                    ) {
+                                        CircularProgressIndicator(
+                                            modifier = Modifier.align(
+                                                Alignment.Center
+                                            )
+                                        )
+                                    }
+                                }
+                            }
+
+                            is UiState.Success -> {
+                                items(topRatedFacilitiesUiState.data) {
+                                    PlaceItem(
+                                        name = it.name ?: "",
+                                        category = it.category ?: "",
+                                        location = it.location ?: "",
+                                        rating = it.rating?.toFloat() ?: 0F,
+                                        imageUrl = it.imageUrl.first(),
+                                        modifier = Modifier
+                                            .size(225.dp, 328.dp)
+                                            .clickable { navigateToDetail(it.name ?: "") }
+                                    )
+                                    Spacer(modifier = Modifier.width(7.dp))
+                                }
+                            }
+
+                            is UiState.Error -> {
+                                item {
+                                    Text(
+                                        text = "Terjadi kesalahan ${topRatedFacilitiesUiState.exception}",
+                                        fontSize = 20.sp,
+                                        fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
+                                    )
+                                }
+                            }
                         }
                     }
                 }
             }
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomePreview() {
-    HomeScreen {}
 }

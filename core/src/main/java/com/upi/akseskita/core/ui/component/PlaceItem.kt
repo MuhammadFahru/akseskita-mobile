@@ -28,6 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -78,7 +79,7 @@ fun PlaceItem(
                         modifier = Modifier.size(14.dp)
                     )
                     Text(
-                        text = rating.toString(),
+                        text = String.format("%.1f", rating),
                         fontSize = 12.sp,
                         lineHeight = 12.sp,
                         fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
@@ -134,6 +135,8 @@ fun PlaceItem(
                             text = location,
                             fontSize = 12.sp,
                             lineHeight = 12.sp,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
                             fontFamily = FontFamily(Font(R.font.plus_jakarta_sans)),
                             fontWeight = FontWeight.SemiBold,
                         )

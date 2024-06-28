@@ -8,11 +8,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.upi.akseskita.core.ui.navigation.Screen
-import com.upi.akseskita.ui.screen.Home
-import com.upi.akseskita.ui.screen.Onboarding
-import com.upi.akseskita.ui.screen.Persona
-import com.upi.akseskita.ui.screen.SplashScreen
 import com.upi.akseskita.core.ui.theme.AksesKitaTheme
+import com.upi.akseskita.feature.home.Home
+import com.upi.akseskita.feature.onboarding.Onboarding
+import com.upi.akseskita.feature.persona.Persona
+import com.upi.akseskita.feature.splashscreen.SplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,9 +23,21 @@ class MainActivity : ComponentActivity() {
             AksesKitaTheme {
                 val navController = rememberNavController()
                 NavHost(navController = navController, startDestination = "splash_screen") {
-                    composable(Screen.SplashScreen.route) { SplashScreen(navController = navController) }
-                    composable(Screen.Onboarding.route) { Onboarding(navController = navController) }
-                    composable(Screen.Persona.route) { Persona(navController = navController) }
+                    composable(Screen.SplashScreen.route) {
+                        SplashScreen(
+                            navController = navController
+                        )
+                    }
+                    composable(Screen.Onboarding.route) {
+                        Onboarding(
+                            navController = navController
+                        )
+                    }
+                    composable(Screen.Persona.route) {
+                        Persona(
+                            navController = navController
+                        )
+                    }
                     composable(Screen.Home.route) { Home() }
                 }
             }
